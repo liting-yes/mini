@@ -2,9 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   acorn: ^8.8.0
+  source-map: ^0.7.4
 
 dependencies:
   acorn: 8.8.0
+  source-map: 0.7.4
 
 packages:
 
@@ -12,4 +14,9 @@ packages:
     resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: false
+
+  /source-map/0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
+    engines: {node: '>= 8'}
     dev: false
