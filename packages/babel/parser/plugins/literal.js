@@ -4,7 +4,7 @@ module.exports = function (Parser) {
             const node = super.parseLiteral(...args)
             switch (typeof node.value) {
                 case 'number':
-                    node.type = 'NumberLiteral'
+                    node.type = 'NumericLiteral'
                     break
                 case 'string':
                     node.type = 'StringLiteral'
