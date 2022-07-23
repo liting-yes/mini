@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 const commander = require('commander')
 const { cosmiconfigSync } = require('cosmiconfig')
-const glob = require('blob')
+const glob = require('glob')
 const miniBabel = require('../core')
 const fsPromises = require('fs').promises
 const path = require('path')
-const { compileFunction } = require('vm')
 
 commander.option('--out-dir <outDir>', '输出目录')
 commander.option('--watch', '监听文件变动')
@@ -24,7 +23,7 @@ if (!commander.args[0]) {
     process.exit(1)
 }
 
-if (cliOpts.outDir) {
+if (!cliOpts.outDir) {
     console.error('没有指定输出目录')
     commander.outputHelp()
     process.exit(1)
@@ -35,16 +34,16 @@ if (cliOpts.watch) {
 
     chokidar.watch(commander.args[0]).on('all', (event, path) => {
         console.log('检测到文件变动，重新编译：' + path)
-        compileFunction([path])
+        compile([path])
     })
 }
 
 const filenames = glob.sync(commander.args[0])
 const explorerSync = cosmiconfigSync('miniBabel')
-const searcgResult = explorerSync.search()
+const searchResult = explorerSync.load('./test/miniBabel.config.js')
 
 const options = {
-    babelOptions: searcgResult.config,
+    babelOptions: searchResult.config,
     cliOptions: {
         ...cliOpts,
         filenames
@@ -52,7 +51,7 @@ const options = {
 }
 
 function compile(filenames) {
-    filenames.foEach(async filename => {
+    filenames.forEach(async filename => {
         const fileContent = await fsPromises.readFile(filename, 'utf-8')
         const baseFilename = path.basename(filename)
         const sourceMapFilename = baseFilename + '.map.json'
@@ -69,7 +68,11 @@ function compile(filenames) {
         try {
             await fsPromises.access(options.cliOptions.outDir)
         } catch (e) {
-            await fsPromises.mkdir(options.cliOptions.outDir)
+            try {
+                await fsPromises.mkdir(options.cliOptions.outDir)
+            } catch (e) {
+                console.warn('the directory already exists')
+            }
         }
 
         await fsPromises.writeFile(distFilePath, generatedFile)

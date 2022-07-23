@@ -6,9 +6,9 @@ module.exports = class NodePath {
     constructor(node, parent, parentPath, key, listKey) {
         this.node = node
         this.parent = parent
-        thia.parentPath = parentPath
+        this.parentPath = parentPath
         this.key = key
-        thia.listKey = listKey
+        this.listKey = listKey
 
         Object.keys(astDef).forEach(key => {
             if (key.startsWith('is')) {
@@ -78,11 +78,11 @@ module.exports = class NodePath {
                 const prop = this.node[key]
 
                 if (Array.isArray(prop)) {
-                    prop.forEach((childNode, index) => {
+                    prop.forEach((childNode) => {
                         traverse(childNode, visitors, this.node, this)
                     })
                 } else {
-                    traverse(prop, visitors, thsi.node, this)
+                    traverse(prop, visitors, this.node, this)
                 }
             })
         }

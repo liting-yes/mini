@@ -18,7 +18,6 @@ module.exports = function traverse(node, visitors, parent, parentPath, key, list
         delete node.__shouldSkip
         return
     }
-
     if (defination.visitor) {
         defination.visitor.forEach(key => {
             const prop = node[key]

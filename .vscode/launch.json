@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "test mini-babel",
+            "program": "${workspaceFolder}/packages/babel/src/cli/index.js",
+            "request": "launch",
+            "type": "node",
+            "args": [
+                "./test/input/*.js",
+                "--out-dir",
+                "./test/dist",
+                "--watch"
+            ],
+            "cwd": "${workspaceFolder}/packages/babel"
+        }
+    ]
+}

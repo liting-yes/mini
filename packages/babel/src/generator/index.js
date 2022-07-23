@@ -36,7 +36,7 @@ class Printer {
         this.printColnum = 0
     }
 
-    Progrom(node) {
+    Program(node) {
         this.addMapping(node)
         node.body.forEach(item => {
             this[item.type](item) + ';'
@@ -97,12 +97,14 @@ class Printer {
             if (index > 0) this.buf += ', '
             this[item.type](item)
         })
+        this.buf += ')'
     }
 
     ExpressionStatement(node) {
         this.addMapping(node)
         this[node.expression.type](node.expression)
     }
+
     ReturnStatement(node) {
         this.addMapping(node)
         this.buf += 'return '

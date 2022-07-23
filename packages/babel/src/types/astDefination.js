@@ -9,11 +9,15 @@ astDefinationMap.set('VariableDeclaration', {
     visitor: ['declarations']
 })
 
+astDefinationMap.set('VariableDeclarator', {
+    visitor: ['id', 'init']
+})
+
 astDefinationMap.set('Identifier', {})
 
 astDefinationMap.set('NumericLiteral', {})
 
-astDefinationMap.set('FunctionDeclarations', {
+astDefinationMap.set('FunctionDeclaration', {
     visitor: ['id', 'params', 'body'],
     isBlock: true
 })
@@ -28,6 +32,14 @@ astDefinationMap.set('ReturnStatement', {
 
 astDefinationMap.set('BinaryExpression', {
     visitor: ['left', 'right']
+})
+
+astDefinationMap.set('ExpressionStatement', {
+    visitor: ['expression']
+})
+
+astDefinationMap.set('CallExpression', {
+    visitor: ['callee', 'arguments']
 })
 
 const validations = {}
