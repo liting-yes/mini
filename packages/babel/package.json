@@ -1,16 +1,23 @@
 {
-  "name": "babel",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "acorn": "^8.8.0",
-    "source-map": "^0.7.4"
-  }
+	"name": "babel",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"bin": {
+		"mini-babel": "./src/cli/index.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"acorn": "^8.8.0",
+		"chokidar": "^3.5.3",
+		"commander": "^9.4.0",
+		"cosmiconfig": "^7.0.1",
+		"glob": "^8.0.3",
+		"source-map": "^0.7.4"
+	}
 }
